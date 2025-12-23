@@ -11,6 +11,6 @@ const nextConfig = {
       root: process.cwd(),
     },
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
