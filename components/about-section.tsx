@@ -9,31 +9,6 @@ export function AboutSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target
-              .querySelectorAll(".fade-in-item")
-              .forEach((el, index) => {
-                setTimeout(() => {
-                  el.classList.add("animate-fade-in");
-                }, index * 100);
-              });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
@@ -101,13 +76,13 @@ export function AboutSection() {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <div className="font-mono text-primary text-sm mb-2 fade-in-item">
+          <div className="font-mono text-primary text-sm mb-2 scroll-reveal scroll-delay-1">
             {"// About Me"}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text fade-in-item">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text scroll-reveal scroll-delay-2">
             FullStack Developer
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed fade-in-item">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed scroll-reveal scroll-delay-3">
             Software Engineering student at EPI with hands-on experience
             building production-ready applications. I specialize in backend
             development but bring full-stack capabilities to deliver complete
@@ -115,34 +90,37 @@ export function AboutSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((item, index) => (
-            <Card
-              key={index}
-              className="p-6 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-300 hover-lift fade-in-item group relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-              <div className="relative z-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {highlights.map((item, index) => {
+            const delayClass = `scroll-delay-${Math.min(index + 1, 8)}`;
+            return (
+              <Card
+                key={index}
+                className={`p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-300 hover-lift group relative overflow-hidden scroll-scale ${delayClass}`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
                 <div
-                  className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <item.icon className="h-6 w-6 text-primary group-hover:animate-pulse" />
+                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                />
+                <div className="relative z-10">
+                  <div
+                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <item.icon className="h-6 w-6 text-primary group-hover:animate-pulse" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 font-mono">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold mb-2 font-mono">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
 
-        <div className="mt-16 fade-in-item" style={{ animationDelay: "0.8s" }}>
+        <div className="mt-16 scroll-blur" style={{ animationDelay: "0.8s" }}>
           <Card className="p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10 space-y-4">

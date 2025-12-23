@@ -73,31 +73,6 @@ export function ContactSection() {
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target
-              .querySelectorAll(".fade-in-item")
-              .forEach((el, index) => {
-                setTimeout(() => {
-                  el.classList.add("animate-fade-in");
-                }, index * 100);
-              });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
@@ -171,24 +146,24 @@ export function ContactSection() {
 
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16">
-          <div className="font-mono text-primary text-sm mb-2 fade-in-item">
+          <div className="font-mono text-primary text-sm mb-2 scroll-blur scroll-delay-1">
             {"// Get in Touch"}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text fade-in-item">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text scroll-reveal scroll-delay-2">
             Interactive Terminal
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed fade-in-item">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed scroll-reveal scroll-delay-3">
             Type commands in the terminal below to learn more about me. Start
             with "help" to see available commands.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2 space-y-4 fade-in-item">
+        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+          <div className="lg:col-span-2 space-y-3 sm:space-y-4 scroll-reveal-left scroll-delay-1">
             {contactInfo.map((item, index) => (
               <Card
                 key={index}
-                className="p-6 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover-lift group relative overflow-hidden"
+                className="p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover-lift group relative overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -269,7 +244,7 @@ export function ContactSection() {
           </div>
 
           <Card
-            className="lg:col-span-3 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 fade-in-item relative overflow-hidden group"
+            className="lg:col-span-3 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group scroll-reveal-right scroll-delay-2"
             style={{ animationDelay: "0.4s" }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -291,7 +266,7 @@ export function ContactSection() {
               {/* Terminal Body */}
               <div
                 ref={terminalRef}
-                className="p-6 h-[400px] overflow-y-auto font-mono text-sm space-y-2"
+                className="p-3 sm:p-4 md:p-6 h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto font-mono text-xs sm:text-sm space-y-2"
               >
                 <div className="text-muted-foreground mb-4">
                   Welcome to my interactive terminal! Type &quot;help&quot; to
@@ -356,7 +331,7 @@ export function ContactSection() {
           </Card>
         </div>
 
-        <Card className="mt-8 p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 fade-in-item relative overflow-hidden group">
+        <Card className="mt-8 p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group scroll-scale scroll-delay-3">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -364,32 +339,36 @@ export function ContactSection() {
             <div className="font-mono text-primary text-sm mb-6">
               {"// Work Preferences"}
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-primary/10">
-                <div className="text-3xl font-bold text-primary mb-2 font-mono group-hover/card:scale-110 transition-transform">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+              <div className="text-center p-3 sm:p-4 md:p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-primary/10">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 sm:mb-2 font-mono group-hover/card:scale-110 transition-transform">
                   Now
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-xs sm:text-sm text-muted-foreground">
                   Availability
                 </div>
               </div>
-              <div className="text-center p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-secondary/10">
-                <div className="text-3xl font-bold text-secondary mb-2 font-mono group-hover/card:scale-110 transition-transform">
+              <div className="text-center p-3 sm:p-4 md:p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-secondary/10">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary mb-1 sm:mb-2 font-mono group-hover/card:scale-110 transition-transform">
                   Remote
                 </div>
-                <div className="text-sm text-muted-foreground">Work Type</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Work Type
+                </div>
               </div>
-              <div className="text-center p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-accent/10">
-                <div className="text-3xl font-bold text-accent mb-2 font-mono group-hover/card:scale-110 transition-transform">
+              <div className="text-center p-3 sm:p-4 md:p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-accent/10">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-accent mb-1 sm:mb-2 font-mono group-hover/card:scale-110 transition-transform">
                   Flexible
                 </div>
-                <div className="text-sm text-muted-foreground">Commitment</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Commitment
+                </div>
               </div>
-              <div className="text-center p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-chart-2/10">
-                <div className="text-3xl font-bold text-chart-2 mb-2 font-mono group-hover/card:scale-110 transition-transform">
+              <div className="text-center p-3 sm:p-4 md:p-6 rounded-lg bg-background/30 hover:bg-background/50 transition-all duration-300 hover:scale-105 group/card border border-chart-2/10">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-chart-2 mb-1 sm:mb-2 font-mono group-hover/card:scale-110 transition-transform">
                   Part-Time
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-xs sm:text-sm text-muted-foreground">
                   Job Preference
                 </div>
               </div>
@@ -398,14 +377,11 @@ export function ContactSection() {
         </Card>
 
         <div
-          className="mt-16 text-center text-sm text-muted-foreground font-mono fade-in-item"
+          className="mt-16 text-center text-sm text-muted-foreground font-mono scroll-reveal"
           style={{ animationDelay: "0.8s" }}
         >
           <p className="mb-2">
             © 2025 Baha Eddine Jdidi. Built with Next.js and React Three Fiber.
-          </p>
-          <p className="text-xs text-muted-foreground/70">
-            Crafted with passion for backend development
           </p>
         </div>
       </div>

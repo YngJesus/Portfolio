@@ -57,12 +57,15 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="group relative flex items-center gap-4">
-            <div className="relative flex items-center gap-3">
+          <a
+            href="#home"
+            className="group relative flex items-center gap-2 sm:gap-4"
+          >
+            <div className="relative flex items-center gap-2 sm:gap-3">
               {/* Animated avatar with 3D effect */}
               <div className="relative perspective-1000">
                 <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500 animate-pulse-glow" />
-                <div className="relative w-12 h-12 rounded-lg overflow-hidden border-2 border-primary/30 group-hover:border-primary shadow-lg transform transition-all duration-500 group-hover:rotate-y-12 group-hover:scale-110">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 border-primary/30 group-hover:border-primary shadow-lg transform transition-all duration-500 group-hover:rotate-y-12 group-hover:scale-110">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <img
                     src="/images/bahaavatar.png"
@@ -74,14 +77,14 @@ export function Navigation() {
 
               {/* Text content with stagger animation */}
               <div className="flex flex-col gap-0.5">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-base font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent transition-all duration-500">
+                <div className="flex items-baseline gap-1 sm:gap-1.5">
+                  <span className="text-sm sm:text-base font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent transition-all duration-500">
                     Baha Eddine Jdidi
                   </span>
                   <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <span className="text-[10px] sm:text-xs font-mono text-muted-foreground group-hover:text-primary transition-colors duration-300">
                     &lt;FullStack Developer /&gt;
                   </span>
                   <div className="hidden sm:flex items-center gap-0.5 ml-1">
@@ -101,12 +104,12 @@ export function Navigation() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-4 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-xl font-mono transition-all duration-300 relative group ${
+                className={`text-base lg:text-xl font-mono transition-all duration-300 relative group ${
                   activeSection === link.href.substring(1)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-primary"

@@ -9,31 +9,6 @@ export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target
-              .querySelectorAll(".fade-in-item")
-              .forEach((el, index) => {
-                setTimeout(() => {
-                  el.classList.add("animate-fade-in");
-                }, index * 150);
-              });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const projects = [
     {
       title: "Energy Monitoring Platform",
@@ -93,108 +68,111 @@ export function ProjectsSection() {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <div className="font-mono text-primary text-sm mb-2 fade-in-item">
+          <div className="font-mono text-primary text-sm mb-2 scroll-rotate scroll-delay-1">
             {"// Live Work"}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text fade-in-item">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text scroll-reveal scroll-delay-2">
             Projects
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed fade-in-item">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed scroll-reveal scroll-delay-3">
             A selection of projects showcasing backend architecture and
             full-stack capabilities
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              onMouseEnter={() => setHoveredProject(index)}
-              onMouseLeave={() => setHoveredProject(null)}
-              className={`p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-500 hover-lift fade-in-item group relative overflow-hidden ${
-                project.Live ? "md:col-span-2" : ""
-              }`}
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animation-delay-200" />
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+          {projects.map((project, index) => {
+            const delayClass = `scroll-delay-${Math.min((index % 4) + 1, 8)}`;
+            return (
+              <Card
+                key={index}
+                onMouseEnter={() => setHoveredProject(index)}
+                onMouseLeave={() => setHoveredProject(null)}
+                className={`p-4 sm:p-6 md:p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-500 hover-lift group relative overflow-hidden scroll-scale ${delayClass} ${
+                  project.Live ? "md:col-span-2" : ""
+                }`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animation-delay-200" />
 
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="mb-4">
-                  {project.Live && (
-                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary text-xs font-mono rounded-full mb-3 animate-pulse-glow">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                      Live
-                    </span>
-                  )}
-                  <h3 className="text-2xl font-bold mb-3 font-mono group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {project.description}
-                  </p>
-                </div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="mb-4">
+                    {project.Live && (
+                      <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary text-xs font-mono rounded-full mb-3 animate-pulse-glow">
+                        <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        Live
+                      </span>
+                    )}
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 font-mono group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                  </div>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, techIdx) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-secondary/10 text-secondary rounded text-xs font-mono border border-secondary/20 hover:bg-secondary/20 transition-colors duration-300"
-                      style={{
-                        animationDelay: `${techIdx * 0.05}s`,
-                        transform:
-                          hoveredProject === index
-                            ? "translateY(-2px)"
-                            : "translateY(0)",
-                        transition: "transform 0.3s ease",
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech, techIdx) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-secondary/10 text-secondary rounded text-xs font-mono border border-secondary/20 hover:bg-secondary/20 transition-colors duration-300"
+                        style={{
+                          animationDelay: `${techIdx * 0.05}s`,
+                          transform:
+                            hoveredProject === index
+                              ? "translateY(-2px)"
+                              : "translateY(0)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
-                <div className="flex gap-4 mt-auto">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="font-mono bg-transparent hover:bg-primary/10 hover:text-primary transition-all duration-300 border-primary/30 hover:border-primary group/btn"
-                  >
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <Github className="h-4 w-4 transition-transform duration-300 group-hover/btn:rotate-12" />
-                      <span>Source Code</span>
-                    </a>
-                  </Button>
-                  {project.liveDemo && (
+                  <div className="flex gap-4 mt-auto">
                     <Button
+                      variant="outline"
                       size="sm"
                       asChild
-                      className="font-mono bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group/btn"
+                      className="font-mono bg-transparent hover:bg-primary/10 hover:text-primary transition-all duration-300 border-primary/30 hover:border-primary group/btn"
                     >
                       <a
-                        href={project.liveDemo}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
                       >
-                        <span>Live Demo</span>
-                        <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                        <Github className="h-4 w-4 transition-transform duration-300 group-hover/btn:rotate-12" />
+                        <span>Source Code</span>
                       </a>
                     </Button>
-                  )}
+                    {project.liveDemo && (
+                      <Button
+                        size="sm"
+                        asChild
+                        className="font-mono bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group/btn"
+                      >
+                        <a
+                          href={project.liveDemo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <span>Live Demo</span>
+                          <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

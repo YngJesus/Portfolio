@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Mail } from "lucide-react";
+import { ArrowDown, Mail, Download } from "lucide-react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import type * as THREE from "three";
@@ -107,25 +107,25 @@ export function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="relative w-48 h-48 mx-auto mb-8 animate-float">
-            <div className="absolute inset-0 bg-primary/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute inset-0 bg-secondary/20 rounded-full blur-2xl animate-pulse animation-delay-300" />
+        <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 md:mb-8 animate-float">
+            <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
+            <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl sm:blur-2xl animate-pulse animation-delay-300" />
             <img
               src="/images/baha.png"
               alt="Baha Eddine Jdidi"
-              className="relative rounded-full w-full h-full object-cover border-4 border-primary/50 hover:scale-105 transition-transform duration-300"
+              className="relative rounded-full w-full h-full object-cover border-2 sm:border-4 border-primary/50 hover:scale-105 transition-transform duration-300"
             />
           </div>
 
-          <div className="space-y-4">
-            <div className="font-mono text-primary text-sm mb-2 animate-slide-up">
+          <div className="space-y-2 sm:space-y-3 md:space-y-4">
+            <div className="font-mono text-primary text-xs sm:text-sm mb-1 sm:mb-2 animate-slide-up">
               {"> const developer = {"}
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold glow-text animate-slide-up animation-delay-100">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold glow-text animate-slide-up animation-delay-100">
               Baha Eddine Jdidi
             </h1>
-            <div className="font-mono text-secondary text-xl md:text-2xl animate-slide-up animation-delay-200">
+            <div className="font-mono text-secondary text-base sm:text-lg md:text-xl lg:text-2xl animate-slide-up animation-delay-200">
               {'  role: "FullStack Developer",'}
             </div>
             <div className="font-mono text-muted-foreground text-lg animate-slide-up animation-delay-300">
@@ -136,19 +136,22 @@ export function HeroSection() {
             </div>
           </div>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-500">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-500 px-4">
             Full-stack developer with a passion for backend architecture. I
             build scalable APIs and robust systems that power modern
             applications.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up animation-delay-600">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center animate-slide-up animation-delay-600 px-4">
             <Button
               size="lg"
               asChild
-              className="font-mono hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/50 bg-primary text-primary-foreground group relative overflow-hidden"
+              className="font-mono hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/50 bg-primary text-primary-foreground group relative overflow-hidden w-full sm:w-auto"
             >
-              <a href="#projects" className="flex items-center gap-2">
+              <a
+                href="#projects"
+                className="flex items-center gap-2 justify-center"
+              >
                 <span className="relative z-10">View Projects</span>
                 <svg
                   className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -170,9 +173,27 @@ export function HeroSection() {
               size="lg"
               variant="outline"
               asChild
-              className="font-mono bg-transparent hover:scale-105 transition-all duration-300 border-2 hover:bg-primary/10 hover:border-primary group"
+              className="font-mono bg-transparent hover:scale-105 transition-all duration-300 border-2 hover:bg-secondary/10 hover:border-secondary group w-full sm:w-auto"
             >
-              <a href="#contact" className="flex items-center gap-2">
+              <a
+                href="/Backend_Developer_CV.pdf"
+                download="Baha_Eddine_Jdidi_CV.pdf"
+                className="flex items-center gap-2 justify-center"
+              >
+                <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
+                <span>Download CV</span>
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="font-mono bg-transparent hover:scale-105 transition-all duration-300 border-2 hover:bg-primary/10 hover:border-primary group w-full sm:w-auto"
+            >
+              <a
+                href="#contact"
+                className="flex items-center gap-2 justify-center"
+              >
                 <span>Get in Touch</span>
                 <Mail className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
               </a>
