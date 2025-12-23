@@ -166,7 +166,7 @@ export function HeroSection() {
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
-                <span className="absolute inset-0 bg-primary/20 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
+                <span className="absolute inset-0 bg-primary/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
               </a>
             </Button>
             <Button

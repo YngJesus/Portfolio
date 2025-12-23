@@ -166,7 +166,7 @@ export function ContactSection() {
                 className="p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover-lift group relative overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="flex items-start gap-4 relative z-10">
                   <div
                     className={`w-12 h-12 rounded-lg bg-${item.color}/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}
@@ -247,7 +247,7 @@ export function ContactSection() {
             className="lg:col-span-3 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group scroll-reveal-right scroll-delay-2"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10">
               {/* Terminal Header */}
@@ -332,7 +332,7 @@ export function ContactSection() {
         </div>
 
         <Card className="mt-8 p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group scroll-scale scroll-delay-3">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-linear-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           <div className="relative z-10">

@@ -65,9 +65,9 @@ export function Navigation() {
             <div className="relative flex items-center gap-2 sm:gap-3">
               {/* Animated avatar with 3D effect */}
               <div className="relative perspective-1000">
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500 animate-pulse-glow" />
+                <div className="absolute -inset-2 bg-linear-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500 animate-pulse-glow" />
                 <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 border-primary/30 group-hover:border-primary shadow-lg transform transition-all duration-500 group-hover:rotate-y-12 group-hover:scale-110">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <img
                     src="/images/bahaavatar.png"
                     alt="Baha Eddine Jdidi"
@@ -79,7 +79,7 @@ export function Navigation() {
               {/* Text content with stagger animation */}
               <div className="flex flex-col gap-0.5">
                 <div className="flex items-baseline gap-1 sm:gap-1.5">
-                  <span className="text-sm sm:text-base font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent transition-all duration-500">
+                  <span className="text-sm sm:text-base font-black bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent transition-all duration-500">
                     Baha Eddine Jdidi
                   </span>
                   <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />

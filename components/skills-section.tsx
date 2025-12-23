@@ -66,7 +66,7 @@ export function SkillsSection() {
                 className={`p-4 sm:p-6 md:p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover-lift group relative overflow-hidden ${animClass} ${delayClass}`}
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">

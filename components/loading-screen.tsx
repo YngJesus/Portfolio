@@ -81,7 +81,7 @@ export function LoadingScreen() {
           {/* Progress bar */}
           <div className="w-48 sm:w-64 h-1.5 sm:h-2 bg-muted rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-primary via-secondary to-accent transition-all duration-300 ease-out"
+              className="h-full bg-linear-to-r from-primary via-secondary to-accent transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>

@@ -103,11 +103,11 @@ export function AboutSection() {
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-linear-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
                   <div className="relative z-10">
                     <div
-                      className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                      className={`w-12 h-12 rounded-lg bg-linear-to-br ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
                     >
                       <item.icon className="h-6 w-6 text-primary group-hover:animate-pulse" />
                     </div>
@@ -125,7 +125,7 @@ export function AboutSection() {
 
           <div className="mt-16 scroll-blur" style={{ animationDelay: "0.8s" }}>
             <Card className="p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-linear-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10 space-y-4">
                 <div className="font-mono text-primary text-sm">
                   {"// Quick Facts"}

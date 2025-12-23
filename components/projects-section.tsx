@@ -91,8 +91,8 @@ export function ProjectsSection() {
     >
       <div className="absolute inset-0 grid-bg opacity-20" />
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-gradient" />
-        <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-transparent via-secondary to-transparent animate-gradient" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent animate-gradient" />
+        <div className="absolute bottom-0 right-0 w-full h-1 bg-linear-to-l from-transparent via-secondary to-transparent animate-gradient" />
       </div>
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
@@ -125,7 +125,7 @@ export function ProjectsSection() {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  className={`absolute inset-0 bg-linear-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animation-delay-200" />
@@ -141,7 +141,7 @@ export function ProjectsSection() {
                       />
                       <div className="pointer-events-none">
                         {/* subtle overlay on hover */}
-                        <div className="hidden sm:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-background/60 to-transparent" />
+                        <div className="hidden sm:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-t from-background/60 to-transparent" />
                       </div>
                     </div>
                   )}
