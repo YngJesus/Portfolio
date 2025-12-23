@@ -1,0 +1,412 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Backend-themed color palette with terminal aesthetics */
+:root {
+  --background: oklch(0.12 0.02 240);
+  --foreground: oklch(0.95 0.01 180);
+  --card: oklch(0.16 0.02 240);
+  --card-foreground: oklch(0.95 0.01 180);
+  --popover: oklch(0.16 0.02 240);
+  --popover-foreground: oklch(0.95 0.01 180);
+  --primary: oklch(0.75 0.15 180);
+  --primary-foreground: oklch(0.12 0.02 240);
+  --secondary: oklch(0.7 0.15 150);
+  --secondary-foreground: oklch(0.12 0.02 240);
+  --muted: oklch(0.25 0.02 240);
+  --muted-foreground: oklch(0.6 0.01 180);
+  --accent: oklch(0.75 0.15 180);
+  --accent-foreground: oklch(0.12 0.02 240);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0.02 240);
+  --input: oklch(0.25 0.02 240);
+  --ring: oklch(0.75 0.15 180);
+  --chart-1: oklch(0.75 0.15 180);
+  --chart-2: oklch(0.7 0.15 150);
+  --chart-3: oklch(0.65 0.15 120);
+  --chart-4: oklch(0.6 0.15 90);
+  --chart-5: oklch(0.55 0.15 60);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.16 0.02 240);
+  --sidebar-foreground: oklch(0.95 0.01 180);
+  --sidebar-primary: oklch(0.75 0.15 180);
+  --sidebar-primary-foreground: oklch(0.12 0.02 240);
+  --sidebar-accent: oklch(0.25 0.02 240);
+  --sidebar-accent-foreground: oklch(0.95 0.01 180);
+  --sidebar-border: oklch(0.25 0.02 240);
+  --sidebar-ring: oklch(0.75 0.15 180);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar for terminal aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.12 0.02 240);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.75 0.15 180);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0.15 150);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glowing text effect for terminal aesthetic */
+.glow-text {
+  text-shadow: 0 0 10px oklch(0.75 0.15 180 / 0.5),
+    0 0 20px oklch(0.75 0.15 180 / 0.3), 0 0 30px oklch(0.75 0.15 180 / 0.2);
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image: linear-gradient(
+      oklch(0.75 0.15 180 / 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, oklch(0.75 0.15 180 / 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Adding advanced custom animations for dynamic sections */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(0.75 0.15 180 / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px oklch(0.75 0.15 180 / 0.6);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate-glow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Gradient animations for dynamic elements */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Hover effects for interactive elements */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px oklch(0.75 0.15 180 / 0.3);
+}
+
+/* Parallax effect helper */
+.parallax {
+  transition: transform 0.1s ease-out;
+}
+
+/* Additional advanced animations for terminal aesthetics */
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes terminal-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 5s linear infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 8s linear infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+.animate-terminal-blink {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+/* Enhanced card hover effects with glowing borders */
+@keyframes border-glow {
+  0%,
+  100% {
+    border-color: oklch(0.75 0.15 180 / 0.2);
+    box-shadow: 0 0 10px oklch(0.75 0.15 180 / 0.2);
+  }
+  50% {
+    border-color: oklch(0.75 0.15 180 / 0.6);
+    box-shadow: 0 0 20px oklch(0.75 0.15 180 / 0.4);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+/* Particle effects */
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(10px, -10px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.animate-particle-float {
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+/* Mobile menu slide animation */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out forwards;
+}
