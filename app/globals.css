@@ -130,36 +130,36 @@ html {
   background-size: 50px 50px;
 }
 
-/* Adding advanced custom animations for dynamic sections */
+/* Adding advanced custom animations for dynamic sections - GPU optimized */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translate3d(0, -20px, 0);
   }
 }
 
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale3d(0.95, 0.95, 1);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
   }
 }
 
@@ -176,31 +176,31 @@ html {
 @keyframes slide-in-left {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translate3d(-50px, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes slide-in-right {
   from {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translate3d(50px, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes rotate-glow {
   0% {
-    transform: rotate(0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
   }
 }
 
@@ -221,30 +221,36 @@ html {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-slide-up {
   animation: slide-up 0.6s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+  will-change: box-shadow;
 }
 
 .animate-slide-in-left {
   animation: slide-in-left 0.6s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .animate-slide-in-right {
   animation: slide-in-right 0.6s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .animation-delay-100 {
@@ -289,39 +295,41 @@ html {
   animation: gradient-shift 3s ease infinite;
 }
 
-/* Hover effects for interactive elements */
+/* Hover effects for interactive elements - GPU optimized */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .hover-lift:hover {
-  transform: translateY(-8px);
+  transform: translate3d(0, -8px, 0);
   box-shadow: 0 12px 40px oklch(0.75 0.15 180 / 0.3);
 }
 
 /* Parallax effect helper */
 .parallax {
   transition: transform 0.1s ease-out;
+  will-change: transform;
 }
 
-/* Additional advanced animations for terminal aesthetics */
+/* Additional advanced animations for terminal aesthetics - GPU optimized */
 @keyframes matrix-rain {
   0% {
-    transform: translateY(-100%);
+    transform: translate3d(0, -100%, 0);
     opacity: 1;
   }
   100% {
-    transform: translateY(100vh);
+    transform: translate3d(0, 100vh, 0);
     opacity: 0;
   }
 }
 
 @keyframes scan-line {
   0% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateY(100vh);
+    transform: translate3d(0, 100vh, 0);
   }
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -134,9 +135,11 @@ export function ProjectsSection() {
                   {/* Preview image for live demos */}
                   {project.Live && project.image && (
                     <div className="mb-4 rounded-lg overflow-hidden border border-border/50 bg-background/40 relative">
-                      <img
+                      <Image
                         src={project.image}
                         alt={`${project.title} preview`}
+                        width={600}
+                        height={224}
                         className="w-full h-48 sm:h-56 object-cover group-hover:scale-[1.02] transition-transform duration-500"
                       />
                       <div className="pointer-events-none">

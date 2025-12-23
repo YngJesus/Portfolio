@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState } from "react";
 import {
   ExternalLink,
@@ -128,9 +129,11 @@ export function CertificateSection() {
                       isHovered ? "scale-110 rotate-3" : "scale-100 rotate-0"
                     }`}
                   >
-                    <img
+                    <Image
                       src={certificate.badge}
                       alt={certificate.title}
+                      width={128}
+                      height={128}
                       className="w-full h-full object-contain drop-shadow-xl relative z-10 group-hover/badge:drop-shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-500"
                     />
                     {/* Shine effect */}

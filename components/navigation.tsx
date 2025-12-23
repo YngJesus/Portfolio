@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X, Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -68,9 +69,12 @@ export function Navigation() {
                 <div className="absolute -inset-2 bg-linear-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500 animate-pulse-glow" />
                 <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 border-primary/30 group-hover:border-primary shadow-lg transform transition-all duration-500 group-hover:rotate-y-12 group-hover:scale-110">
                   <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <img
+                  <Image
                     src="/images/bahaavatar.png"
                     alt="Baha Eddine Jdidi"
+                    width={48}
+                    height={48}
+                    priority
                     className="w-full h-full object-cover relative z-10"
                   />
                 </div>

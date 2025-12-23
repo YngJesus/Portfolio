@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Mail, Download } from "lucide-react";
@@ -111,9 +112,12 @@ export function HeroSection() {
           <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 md:mb-8 animate-float">
             <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
             <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl sm:blur-2xl animate-pulse animation-delay-300" />
-            <img
+            <Image
               src="/images/baha.png"
               alt="Baha Eddine Jdidi"
+              width={192}
+              height={192}
+              priority
               className="relative rounded-full w-full h-full object-cover border-2 sm:border-4 border-primary/50 hover:scale-105 transition-transform duration-300"
             />
           </div>

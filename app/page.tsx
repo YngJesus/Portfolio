@@ -4,13 +4,19 @@ import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { SkillsSection } from "@/components/skills-section";
-import { CertificateSection } from "@/components/certificate-section";
 import { ContactSection } from "@/components/contact-section";
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/animated-background";
 import { LoadingScreen } from "@/components/loading-screen";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
+
+// Lazy load certificate section (below fold)
+const CertificateSection = lazy(() =>
+  import("@/components/certificate-section").then((mod) => ({
+    default: mod.CertificateSection,
+  }))
+);
 
 export default function Home() {
   useScrollReveal();
@@ -44,7 +50,9 @@ export default function Home() {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
-      <CertificateSection />
+      <Suspense fallback={<div className="h-96 animate-pulse bg-card/20" />}>
+        <CertificateSection />
+      </Suspense>
       <ContactSection />
     </main>
   );
