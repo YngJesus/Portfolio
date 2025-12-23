@@ -9,6 +9,37 @@ export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
+  // Map tech names to Devicon CDN icons
+  const techIconMap: Record<string, string> = {
+    nestjs: "https://nestjs.com/logo-small-gradient.0ed287ce.svg",
+    mongodb:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain.svg",
+    influxdb:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c6/Influxdb_logo.svg",
+    react:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    typescript:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg",
+    angular:
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Angular_gradient_logo.png",
+    postgresql:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg",
+    docker:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg",
+    javascript:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
+    html: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg",
+    html5:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg",
+    css: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg",
+    css3: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg",
+    bootstrap:
+      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg",
+    node: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg",
+    nodejs:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg",
+  };
+
   const projects = [
     {
       title: "Energy Monitoring Platform",
@@ -37,6 +68,7 @@ export function ProjectsSection() {
       Live: true,
       gradient: "from-accent/20 via-primary/10 to-secondary/20",
       liveDemo: "https://guesswholol.me/",
+      image: "/images/GuessWho.png",
     },
     {
       title: "E-Commerce Platform",
@@ -47,6 +79,7 @@ export function ProjectsSection() {
       Live: true,
       gradient: "from-chart-2/20 via-primary/10 to-secondary/20",
       liveDemo: "https://yngjesus.github.io/clothing-store/",
+      image: "/images/Clothing.png",
     },
   ];
 
@@ -100,6 +133,20 @@ export function ProjectsSection() {
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animation-delay-200" />
 
                 <div className="relative z-10 flex flex-col h-full">
+                  {/* Preview image for live demos */}
+                  {project.Live && project.image && (
+                    <div className="mb-4 rounded-lg overflow-hidden border border-border/50 bg-background/40 relative">
+                      <img
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        className="w-full h-48 sm:h-56 md:h-72 lg:h-[22rem] xl:h-[26rem] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      />
+                      <div className="pointer-events-none">
+                        {/* subtle overlay on hover */}
+                        <div className="hidden sm:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-background/60 to-transparent" />
+                      </div>
+                    </div>
+                  )}
                   <div className="mb-4">
                     {project.Live && (
                       <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary text-xs font-mono rounded-full mb-3 animate-pulse-glow">
@@ -115,23 +162,39 @@ export function ProjectsSection() {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, techIdx) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-secondary/10 text-secondary rounded text-xs font-mono border border-secondary/20 hover:bg-secondary/20 transition-colors duration-300"
-                        style={{
-                          animationDelay: `${techIdx * 0.05}s`,
-                          transform:
-                            hoveredProject === index
-                              ? "translateY(-2px)"
-                              : "translateY(0)",
-                          transition: "transform 0.3s ease",
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="flex flex-wrap items-center gap-3 mb-6">
+                    {project.tech.map((tech, techIdx) => {
+                      const key = tech.toLowerCase();
+                      const iconUrl = techIconMap[key];
+                      return (
+                        <div
+                          key={tech}
+                          className="flex items-center gap-2 px-2 py-1 rounded-md bg-background/40 border border-border/40 hover:bg-background/60 transition-colors"
+                          style={{
+                            animationDelay: `${techIdx * 0.05}s`,
+                            transform:
+                              hoveredProject === index
+                                ? "translateY(-2px)"
+                                : "translateY(0)",
+                            transition: "transform 0.3s ease",
+                          }}
+                          title={tech}
+                        >
+                          {iconUrl ? (
+                            <img
+                              src={iconUrl}
+                              alt={tech}
+                              className="h-5 w-5"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="text-xs font-mono text-muted-foreground">
+                              {tech}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
 
                   <div className="flex gap-4 mt-auto">
