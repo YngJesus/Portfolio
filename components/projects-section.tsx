@@ -121,9 +121,7 @@ export function ProjectsSection() {
                 key={index}
                 onMouseEnter={() => setHoveredProject(index)}
                 onMouseLeave={() => setHoveredProject(null)}
-                className={`p-4 sm:p-6 md:p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-500 hover-lift group relative overflow-hidden scroll-scale ${delayClass} ${
-                  project.Live ? "md:col-span-2" : ""
-                }`}
+                className={`p-4 sm:p-6 md:p-8 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-500 hover-lift group relative overflow-hidden scroll-scale ${delayClass}`}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div
@@ -139,7 +137,7 @@ export function ProjectsSection() {
                       <img
                         src={project.image}
                         alt={`${project.title} preview`}
-                        className="w-full h-48 sm:h-56 md:h-72 lg:h-[22rem] xl:h-[26rem] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        className="w-full h-48 sm:h-56 object-cover group-hover:scale-[1.02] transition-transform duration-500"
                       />
                       <div className="pointer-events-none">
                         {/* subtle overlay on hover */}

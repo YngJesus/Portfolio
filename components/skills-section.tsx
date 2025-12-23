@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Server, Database, Palette, Wrench } from "lucide-react";
 
 export function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -12,6 +13,13 @@ export function SkillsSection() {
     database: ["PostgreSQL", "MongoDB", "TypeORM", "InfluxDB"],
     frontend: ["React", "NextJs", "Shadcn UI", "Tailwind CSS", "Three.fiber"],
     tools: ["Git", "Docker", "Swagger", "Vercel"],
+  };
+
+  const categoryIcons = {
+    backend: Server,
+    database: Database,
+    frontend: Palette,
+    tools: Wrench,
   };
 
   const skillColors = {
@@ -66,29 +74,81 @@ export function SkillsSection() {
                     <span className="text-secondary group-hover:animate-pulse">
                       {">"}
                     </span>{" "}
+                    {(() => {
+                      const Icon =
+                        categoryIcons[category as keyof typeof categoryIcons];
+                      return <Icon className="h-5 w-5" />;
+                    })()}
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </h3>
                   <div className="flex flex-wrap gap-3">
-                    {skillList.map((skill) => (
-                      <span
-                        key={skill}
-                        onMouseEnter={() => setHoveredSkill(skill)}
-                        onMouseLeave={() => setHoveredSkill(null)}
-                        className={`px-4 py-2 bg-${
-                          skillColors[category as keyof typeof skillColors]
-                        }/10 text-${
-                          skillColors[category as keyof typeof skillColors]
-                        } rounded-lg text-sm font-mono border border-${
-                          skillColors[category as keyof typeof skillColors]
-                        }/20 hover:bg-${
-                          skillColors[category as keyof typeof skillColors]
-                        }/20 hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-default ${
-                          hoveredSkill === skill ? "ring-2 ring-primary/50" : ""
-                        }`}
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {skillList.map((skill) => {
+                      const techIconMap: Record<string, string> = {
+                        nestjs:
+                          "https://nestjs.com/logo-small-gradient.0ed287ce.svg",
+                        "node.js":
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg",
+                        typescript:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg",
+                        javascript:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
+                        postgresql:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg",
+                        mongodb:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain.svg",
+                        typeorm:
+                          "https://raw.githubusercontent.com/typeorm/typeorm/master/resources/logo_big.png",
+                        influxdb:
+                          "https://upload.wikimedia.org/wikipedia/commons/c/c6/Influxdb_logo.svg",
+                        react:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                        nextjs:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+                        "shadcn ui": "https://ui.shadcn.com/favicon.ico",
+                        "tailwind css":
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                        "three.fiber":
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
+                        git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg",
+                        docker:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg",
+                        swagger:
+                          "https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg",
+                        vercel:
+                          "https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png",
+                      };
+                      const iconUrl = techIconMap[skill.toLowerCase()];
+                      return (
+                        <span
+                          key={skill}
+                          onMouseEnter={() => setHoveredSkill(skill)}
+                          onMouseLeave={() => setHoveredSkill(null)}
+                          className={`px-4 py-2 bg-${
+                            skillColors[category as keyof typeof skillColors]
+                          }/10 text-${
+                            skillColors[category as keyof typeof skillColors]
+                          } rounded-lg text-sm font-mono border border-${
+                            skillColors[category as keyof typeof skillColors]
+                          }/20 hover:bg-${
+                            skillColors[category as keyof typeof skillColors]
+                          }/20 hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-default flex items-center gap-2 ${
+                            hoveredSkill === skill
+                              ? "ring-2 ring-primary/50"
+                              : ""
+                          }`}
+                        >
+                          {iconUrl && (
+                            <img
+                              src={iconUrl}
+                              alt={skill}
+                              className="h-4 w-4"
+                              loading="lazy"
+                            />
+                          )}
+                          {skill}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </Card>
